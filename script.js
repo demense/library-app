@@ -13,7 +13,16 @@ function Book(title, author, pages, read, id) {
   this.id = id;
 }
 
-showForm();
+// This function toggles a book instance’s read status
+Book.prototype.toggleReadStatus = function () {
+  if (this.read === "Yes") {
+    this.read = "No";
+  } else if (this.read === "No") {
+    this.read = "Yes";
+  }
+};
+
+showNewBookForm();
 
 // ######### Function Declarations #########
 
@@ -64,11 +73,31 @@ function renderBooks() {
     removeIcon.addEventListener("click", function () {
       removeBookFromLibrary(removeIcon);
     });
+
+    const toggleReadStatus = document.createElement("td");
+    toggleReadStatus.setAttribute("class", "invisible-border");
+    const toggleReadStatusIcon = document.createElement("img");
+    toggleReadStatusIcon.src = "./toggle_read_status.svg";
+    toggleReadStatusIcon.alt = "toggle read status icon";
+    toggleReadStatusIcon.setAttribute("data-id", library[i].id);
+    toggleReadStatus.appendChild(toggleReadStatusIcon);
+    tr.appendChild(toggleReadStatus);
+
+    toggleReadStatusIcon.addEventListener("click", function () {
+      const toggleReadStatusIconId = this.dataset.id;
+      const bookIndex = library.findIndex(
+        (obj) => obj.id === toggleReadStatusIconId
+      );
+
+      library[bookIndex].toggleReadStatus();
+
+      renderBooks();
+    });
   }
 }
 
-// This function open a dialog with a form to fill new book info
-function showForm() {
+// This function open a form modal to fill new book info
+function showNewBookForm() {
   const newBookBtn = document.querySelector("#new-book-btn");
   const dialog = document.querySelector("dialog");
   newBookBtn.addEventListener("click", function () {
@@ -158,6 +187,7 @@ function showForm() {
   });
 }
 
+// This function removes a book from the library
 function removeBookFromLibrary(icon) {
   const removeIconId = icon.dataset.id;
   const bookIndex = library.findIndex((obj) => obj.id === removeIconId);
