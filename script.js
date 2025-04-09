@@ -29,7 +29,6 @@ function addBookToLibrary(title, author, pages, read) {
 
 // This function renders books
 function renderBooks() {
-  console.log(library);
   const tbody = document.querySelector("tbody");
   tbody.textContent = "";
 
@@ -52,6 +51,19 @@ function renderBooks() {
     const read = document.createElement("td");
     read.textContent = library[i].read;
     tr.appendChild(read);
+
+    const remove = document.createElement("td");
+    remove.setAttribute("class", "invisible-border");
+    const removeIcon = document.createElement("img");
+    removeIcon.src = "./delete.svg";
+    removeIcon.alt = "delete icon";
+    removeIcon.setAttribute("data-id", library[i].id);
+    remove.appendChild(removeIcon);
+    tr.appendChild(remove);
+
+    removeIcon.addEventListener("click", function () {
+      removeBookFromLibrary(removeIcon);
+    });
   }
 }
 
@@ -144,6 +156,15 @@ function showForm() {
       renderBooks();
     });
   });
+}
+
+function removeBookFromLibrary(icon) {
+  const removeIconId = icon.dataset.id;
+  const bookIndex = library.findIndex((obj) => obj.id === removeIconId);
+
+  library.splice(bookIndex, 1);
+
+  renderBooks();
 }
 
 // #########################################
