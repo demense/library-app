@@ -6,7 +6,6 @@ body {
   gap: 20px;
 }
 
-
 table {
   border: 1px solid #dededf;
   width: 70%;
@@ -30,4 +29,17 @@ td {
   padding: 5px;
 }
 
+dialog {
+  margin: auto;
+}
 
+form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  width: 100%;
+}

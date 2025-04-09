@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./reset.css">
-  <link rel="stylesheet" href="./styles.css">
-  <script defer src="./script.js"></script>
-  <title>Library App</title>
-</head>
-<body>
-  <h1>Library App</h1>
-  <table>
-    <caption>Books</caption>
-    <thead>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
+    <title>Library App</title>
+  </head>
+  <body>
+    <h1>Library App</h1>
+    <button type="button" id="new-book-btn">New Book</button>
+    <dialog>
+      <!-- <form>
+        <label for="title">Title <input type="text" id="title" /></label>
+        <label for="author">Author <input type="text" id="author" /></label>
+        <label for="pages">Pages <input type="number" id="pages" /></label>
+        <label for="read"
+          >Read
+          <select name="read" id="read">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select></label
+        >
+        <button type="submit" id="book-submit-btn">Submit</button>
+      </form> -->
+    </dialog>
+    <table>
+      <caption>
+        Books
+      </caption>
+      <thead>
         <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Read</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Pages</th>
+          <th>Read</th>
         </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-</body>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
 </html>
