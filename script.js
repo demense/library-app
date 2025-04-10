@@ -1,26 +1,23 @@
 // Book objects are stored in this array
 const library = [];
 
-// Constructor for book objects
-function Book(title, author, pages, read, id) {
-  if (!new.target) {
-    throw Error("You should call the constructor with 'new'");
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.id = crypto.randomUUID();
   }
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.id = id;
-}
 
-// This function toggles a book instance’s read status
-Book.prototype.toggleReadStatus = function () {
-  if (this.read === "Yes") {
-    this.read = "No";
-  } else if (this.read === "No") {
-    this.read = "Yes";
+  toggleReadStatus() {
+    if (this.read === "Yes") {
+      this.read = "No";
+    } else if (this.read === "No") {
+      this.read = "Yes";
+    }
   }
-};
+}
 
 showNewBookForm();
 
@@ -28,11 +25,8 @@ showNewBookForm();
 
 // This function add books to the library
 function addBookToLibrary(title, author, pages, read) {
-  // Generate random ID for the book
-  const bookId = crypto.randomUUID();
-
   // Create a book and add it to library
-  const book = new Book(title, author, pages, read, bookId);
+  const book = new Book(title, author, pages, read);
   library.push(book);
 }
 
@@ -90,6 +84,7 @@ function renderBooks() {
       );
 
       library[bookIndex].toggleReadStatus();
+      // console.log(library);
 
       renderBooks();
     });
